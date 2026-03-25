@@ -1,4 +1,5 @@
 import { View, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
 const SALAS_RESERVADAS = [
     { id: '1', title: 'Iniciação Cientifica', sala: '202', unidade: 'Paulista', privada: true, reservante_name: 'Fulano da Silva', reservante_rm: '999999' },
@@ -15,6 +16,7 @@ const SALAS_DISPONIVEIS = [
 ];
 
 export default function Index() {
+    const router = useRouter();
     const renderReservedItem = ({ item }) => (
         <View style={styles.item}>
             <Text style={{ color: 'white', fontSize: 25, fontWeight: '700' }}>{item.title}</Text>
@@ -35,7 +37,7 @@ export default function Index() {
             <Text style={{ color: 'white', fontSize: 24, fontWeight: '700', marginBottom: 8 }}>Sala {item.sala}</Text>
             <Text style={styles.secondaryText}>{item.sala.charAt(0)}º andar</Text>
             <Text style={styles.secondaryText}>Unidade: {item.unidade}</Text>
-            <TouchableOpacity style={styles.requestButton}>
+            <TouchableOpacity style={styles.requestButton} onPress={() => router.push('/reservar')}>
                 <Text style={styles.requestButtonText}>Solicitar reserva</Text>
             </TouchableOpacity>
         </View>

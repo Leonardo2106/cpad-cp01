@@ -4,7 +4,7 @@
 ![Static Badge](https://img.shields.io/badge/Disciplina-Cross--Platform_Application_Development-green)
 ![Static Badge](https://img.shields.io/badge/github-repo-blue?logo=github)
 
-![Static Badge](https://img.shields.io/badge/version-debug-orange?logo=linkedin)
+![Static Badge](https://img.shields.io/badge/version-debug_v2-orange?logo=linkedin)
 
 ### 🖥️ Developers:
 
@@ -40,13 +40,14 @@ A **ReservaFIAP** é um **app mobile** que possibilita **alunos da FIAP reservar
 
 # 
 
-### 🎯 Realease
+### 🎯 Release
 
 **Versão de Desenvolvedor**:
 
 <img width='250px' src='ReservaFIAP/assets/screenshots/Screenshot_1774386570.png' >
+<img width='250px' src='ReservaFIAP/assets/screenshots/Screenshot_1774474257.png' >
 
-**Note**: O app contém apenas uma tela `index` por enquanto. O próximo passo é criar duas telas: uma tela de `perfil` e uma tela de `reserva`.
+**Note**: O app contém uma tela `index` e a tela `reservar` por enquanto. O próximo passo é criar duas telas: uma tela de `perfil`.
 
 #
 
@@ -59,6 +60,8 @@ git clone https://github.com/Leonardo2106/cpad-cp01.git
 
 2. Dentro do repositório instale as dependências e inicia a aplicação:
 ```bash
+cd ReservaFIAP
+
 npm install
 
 npm start

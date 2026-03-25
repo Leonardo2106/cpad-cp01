@@ -11,6 +11,14 @@ export default function Layout() {
                     tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} />
                 }}
             />
+
+            <Tabs.Screen 
+                name='reservar'
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <Ionicons name="bug" size={24} color={color} />
+                }}
+            />
         </Tabs>
     )
 }
