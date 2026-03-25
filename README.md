@@ -9,19 +9,19 @@
 ### 🖥️ Developers:
 
 <div style="display: flex; gap: 10px;">
-    <p><b>Arthur Reis</b></p>
+    <p><b>Arthur Reis Batista da Silva</b></p>
     <a href='https://github.com/ArthurReisBS' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/github-gray?logo=github"></a>
     <a href='https://www.linkedin.com/in/arthur-reis-4a0253310/' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/linkedin-blue?logo=linkedin"></a>
 </div>
 
 <div style="display: flex; gap: 10px;">
-    <p><b>Carolina Bernardo</b></p>
+    <p><b>Carolina Monteiro Bernardo</b></p>
     <a href='https://github.com/cabernardom' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/github-gray?logo=github"></a>
     <a href='https://www.linkedin.com/in/carolina-bernardo-72067a1aa/' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/linkedin-blue?logo=linkedin"></a>
 </div>
 
 <div style="display: flex; gap: 10px;">
-    <p><b>Leonardo Piassa</b></p>
+    <p><b>Leonardo de Magalhães Piassa</b></p>
     <a href='https://github.com/Leonardo2106' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/github-gray?logo=github"></a>
     <a href='https://www.linkedin.com/in/leonardo-piassa/' target='_blank'><img alt="Static Badge" src="https://img.shields.io/badge/linkedin-blue?logo=linkedin"></a>
 </div>
@@ -56,10 +56,15 @@ A **ReservaFIAP** é um **app mobile** que possibilita **alunos da FIAP reservar
 
 <img width='250px' src='ReservaFIAP/assets/screenshots/Screenshot_1774386570.png' >
 <img width='250px' src='ReservaFIAP/assets/screenshots/Screenshot_1774474257.png' >
+<img width='250px' src='ReservaFIAP/assets/screenshots/Screenshot_1774479974.png' >
 
 #
 
 ### 📦 Instalação
+
+**Pré-requisitos:**
+- Node
+- Expo Go
 
 1. Clone o repositório:
 ```bash

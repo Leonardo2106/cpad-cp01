@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function Layout() {
     return(
@@ -24,7 +25,7 @@ export default function Layout() {
                 name='profile'
                 options={{
                     headerShown: false,
-                    tabBarIcon: ({ color }) => <Ionicons name="user" size={24} color={color} />
+                    tabBarIcon: ({ color }) => <Entypo name="user" size={24} color={color}/>
                 }}
             />
 
