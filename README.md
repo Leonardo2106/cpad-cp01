@@ -4,7 +4,7 @@
 ![Disciplina](https://img.shields.io/badge/Disciplina-Cross--Platform_Application_Development-green)
 ![Github Repo](https://img.shields.io/badge/github-repo-blue?logo=github)
 
-![Versao](https://img.shields.io/badge/version-1.0.1_debug-orange)
+![Versao](https://img.shields.io/badge/version-1.0.1-green)
 
 Aplicativo mobile desenvolvido com React Native e Expo para apoiar a reserva de salas da FIAP. A proposta do projeto é centralizar a visualização de salas disponíveis, reservas já criadas e o fluxo inicial de cadastro de usuário.
 
@@ -84,13 +84,20 @@ Hoje o app funciona como um protótipo navegável com um fluxo de usuário valid
 - melhorar validações de formulário, mensagens de erro e segurança do armazenamento
 - substituir persistência local por backend/API quando o projeto avançar para uma versão mais completa
 
-## 🖼️ Capturas de tela (Release)
+## 🖼️ Capturas de tela e Gifs (Release)
 
 <img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1774386570.png" alt="Tela inicial" />
 <img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1774474257.png" alt="Tela de reserva" />
 <img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1774479974.png" alt="Tela de perfil" />
 <img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1777405081.png" alt="Tela de entrada (sing)" />
 <img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1777405085.png" alt="Tela de cadastro" />
+<img width="250" src="ReservaFIAP/assets/screenshots/Screenshot_1777416504.png" alt="Tela de Login" />
+
+![sign in sign up](ReservaFIAP/assets/gifs/Login-logout.gif)
+
+![login to home](ReservaFIAP/assets/gifs/Login-logout.gif)
+
+
 
 ## 📦 Como executar
 

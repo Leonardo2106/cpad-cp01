@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useState, useCallback } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
+import { useRouter, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const USER_KEY = '@reservafiap:user';
+const SESSION_KEY = '@reservafiap:session';
 
 export default function Profile() {
     const router = useRouter();
@@ -12,44 +15,51 @@ export default function Profile() {
         iniciais: '--'
     });
 
-    useEffect(() => {
-        const carregarDados = async () => {
-            try {
-                // Busca os mesmos dados salvos no cadastro
-                const userJson = await AsyncStorage.getItem('@reservafiap:user');
-                if (userJson) {
-                    const usuario = JSON.parse(userJson);
-                    
-                    // Pega a primeira letra do primeiro nome e a primeira do último nome
-                    const partesNome = usuario.nome.trim().split(' ');
-                    let iniciaisCalc = '';
-                    if (partesNome.length > 1) {
-                        iniciaisCalc = (partesNome[0][0] + partesNome[partesNome.length - 1][0]).toUpperCase();
-                    } else if (partesNome.length === 1 && partesNome[0] !== '') {
-                        iniciaisCalc = partesNome[0].substring(0, 2).toUpperCase();
-                    }
-
-                    setUserData({
-                        nome: usuario.nome,
-                        rm: usuario.rm,
-                        iniciais: iniciaisCalc
-                    });
+    const carregarDados = useCallback(async () => {
+        try {
+            const userJson = await AsyncStorage.getItem(USER_KEY);
+            if (userJson) {
+                const usuario = JSON.parse(userJson);
+                
+                const partesNome = usuario.nome.trim().split(' ').filter(Boolean);
+                let iniciaisCalc = '--';
+                if (partesNome.length > 1) {
+                    iniciaisCalc = (partesNome[0][0] + partesNome[partesNome.length - 1][0]).toUpperCase();
+                } else if (partesNome.length === 1) {
+                    iniciaisCalc = partesNome[0].substring(0, 2).toUpperCase();
                 }
-            } catch (error) {
-                console.error('Erro ao carregar os dados do perfil', error);
-            }
-        };
 
-        carregarDados();
+                setUserData({
+                    nome: usuario.nome,
+                    rm: usuario.rm,
+                    iniciais: iniciaisCalc
+                });
+                return;
+            }
+
+            setUserData({
+                nome: 'Usuário não encontrado',
+                rm: '--',
+                iniciais: '--'
+            });
+        } catch (error) {
+            console.error('Erro ao carregar os dados do perfil', error);
+        }
     }, []);
+
+    useFocusEffect(
+        useCallback(() => {
+            carregarDados();
+        }, [carregarDados])
+    );
     
     const handleLogout = async () => {
         try {
-            await AsyncStorage.removeItem('@reservafiap:session');
-
+            await AsyncStorage.removeItem(SESSION_KEY);
             router.replace('/sign');
         } catch (error) {
             console.error('Erro ao tentar sair da conta:', error);
+            Alert.alert('Erro', 'Nao foi possivel sair da conta.');
         }
     };
 

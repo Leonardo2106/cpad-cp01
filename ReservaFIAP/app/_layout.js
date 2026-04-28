@@ -5,22 +5,28 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { View, ActivityIndicator } from 'react-native';
 
+const SESSION_KEY = '@reservafiap:session';
+const AUTH_ROUTES = new Set(['sign', 'cadastro', 'login']);
+
 export default function Layout() {
     const router = useRouter();
     const segments = useSegments();
     const [isReady, setIsReady] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         const verificarSessao = async () => {
             try {
-                const session = await AsyncStorage.getItem('@reservafiap:session');
-                const inAuthGroup = segments[0] === 'sign' || segments[0] === 'cadastro' || segments[0] === 'login';
+                const session = await AsyncStorage.getItem(SESSION_KEY);
+                const authenticated = session === 'active';
+                const currentRoute = segments[0] ?? 'index';
+                const inAuthGroup = AUTH_ROUTES.has(currentRoute);
 
-                if (!session && !inAuthGroup) {
-                    // Sem sessão e tentando acessar área protegida? Expulso para o sign.
+                setIsAuthenticated(authenticated);
+
+                if (!authenticated && !inAuthGroup) {
                     router.replace('/sign');
-                } else if (session && inAuthGroup) {
-                    // Com sessão ativa e tentando acessar telas de login? Joga pra home.
+                } else if (authenticated && inAuthGroup) {
                     router.replace('/');
                 }
             } catch (error) {
@@ -42,12 +48,22 @@ export default function Layout() {
         );
     }
 
+    const hideTabBar = !isAuthenticated || AUTH_ROUTES.has(segments[0] ?? 'index');
+
     return(
-        <Tabs screenOptions={{ tabBarActiveTintColor: '#ff096f', tabBarStyle: {backgroundColor: '#202020', borderTopWidth: 0, elevation: 0, } }}>
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: '#ff096f',
+                tabBarStyle: hideTabBar
+                    ? { display: 'none' }
+                    : { backgroundColor: '#202020', borderTopWidth: 0, elevation: 0 },
+            }}
+        >
             <Tabs.Screen 
                 name='index'    
                 options={{
                     headerShown: false,
+                    href: isAuthenticated ? '/' : null,
                     tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} />
                 }}
             />
@@ -56,6 +72,7 @@ export default function Layout() {
                 name='reservar'
                 options={{
                     headerShown: false,
+                    href: isAuthenticated ? '/reservar' : null,
                     tabBarIcon: ({ color }) => <Ionicons name="bug" size={24} color={color} />
                 }}
             />
@@ -64,6 +81,7 @@ export default function Layout() {
                 name='profile'
                 options={{
                     headerShown: false,
+                    href: isAuthenticated ? '/profile' : null,
                     tabBarIcon: ({ color }) => <Entypo name="user" size={24} color={color}/>
                 }}
             />
@@ -72,7 +90,7 @@ export default function Layout() {
                 name='cadastro'
                 options={{
                     headerShown: false,
-                    tabBarItemStyle: { display: 'none' },
+                    href: isAuthenticated ? null : '/cadastro',
                 }}
             />
 
@@ -80,7 +98,7 @@ export default function Layout() {
                 name='sign'
                 options={{
                     headerShown: false,
-                    tabBarItemStyle: { display: 'none' },
+                    href: isAuthenticated ? null : '/sign',
                 }}
             />
 
@@ -88,7 +106,7 @@ export default function Layout() {
                 name='login'
                 options={{
                     headerShown: false,
-                    tabBarItemStyle: { display: 'none' },
+                    href: isAuthenticated ? null : '/login',
                 }}
             />
         </Tabs>

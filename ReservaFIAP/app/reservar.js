@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Switch, TouchableOpacity, ScrollView, Platform } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Switch, TouchableOpacity, ScrollView, Platform, Alert } from 'react-native';
 
 // Cores principais do design
 const COLORS = {
@@ -20,9 +20,13 @@ export default function ReservaForm() {
   const [isPrivada, setIsPrivada] = useState(false);
 
   const handleEnviar = () => {
-    // Lógica para enviar o formulário (ex: API call)
+    if (!titulo.trim() || !descricao.trim() || !data.trim() || !horario.trim()) {
+      Alert.alert('Campos obrigatorios', 'Preencha titulo, descricao, data e horario.');
+      return;
+    }
+
     console.log('Dados Enviados:', { titulo, descricao, data, horario, isPrivada });
-    alert('Solicitação Enviada!');
+    Alert.alert('Solicitacao enviada', 'Sua reserva foi registrada com sucesso.');
   };
 
   return (
